@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Getting and Cleaning Data Course Project - CodeBook</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Getting and Cleaning Data Course Project - CodeBook</h1>
+
+<h1></h1>
+
+<p>This file describes the variables, the data, and any transformations or work that it has been performed to clean up the data.</p>
+
+<h2>Summary of the data set information</h2>
+
+<p>The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. </p>
+
+<h2>Source of the information</h2>
+
+<p>The site where the data was obtained:<br/>
+<a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a> </p>
+
+<p>The data for the project:<br/>
+<a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip</a> </p>
+
+<h2>Clean up of the data</h2>
+
+<p>The run_analysis.R script performs the following steps to clean the data:  </p>
+
+<ol>
+<li><p>Read X_test.txt, y_test.txt and subject_test.txt from the &ldquo;./UCI HAR Dataset/test&rdquo; folder and store them in xtest, ytest and stest variables respectively.</p></li>
+<li><p>Read X_train.txt, y_train.txt and subject_train.txt from the &ldquo;./UCI HAR Dataset/test&rdquo; folder and store them in xtrain, ytrain and strain variables respectively.</p></li>
+<li><p>Append data of the different &ldquo;test&rdquo; object created in point 1 to obtain just one object &ldquo;test&rdquo; (using cbind). Also adding a new attribute &ldquo;Source&rdquo; with value &ldquo;test&rdquo; to indicate that the data came from the test group.</p></li>
+<li><p>Append data of the different &ldquo;train&rdquo; object created in point 2 to obtain just one object &ldquo;train&rdquo; (using cbind). Also adding a new attribute &ldquo;Source&rdquo; with value &ldquo;train&rdquo; to indicate that the data came from the train group.</p></li>
+<li><p>Concatenate &ldquo;train&rdquo; and &ldquo;test&rdquo;&ldquo; objects to create one object &quot;data&rdquo;</p></li>
+<li><p>Clean unused object to free memory. These objects are: xtest, ytest, stest, xtrain, ytrain, strain, test and train. Only &ldquo;data&rdquo; object remains in memory.</p></li>
+<li><p>Read the features.txt file from the &ldquo;/UCI HAR Dataset&rdquo; folder and store the data in an object called &ldquo;features&rdquo;. </p></li>
+<li><p>Assign the names of the variables included in &ldquo;features&rdquo; to the attributes of the object &ldquo;data&rdquo;, using a temporary varaibles called &ldquo;names&rdquo;. In addition, rename the first three columns as &ldquo;TestLabel&rdquo;, Subject&quot; and &ldquo;Source&rdquo;.</p></li>
+<li><p>Store in the variable &ldquo;ms&rdquo; (for mean-std) the values of &ldquo;features&rdquo; that include &ldquo;mean&rdquo;, &ldquo;Mean&rdquo; or &ldquo;std&rdquo; in any position of the string. So, we have identified information related with means and standar deviations.</p></li>
+<li><p>Subset the columns of &ldquo;data&rdquo; removing the ones that do not appear in &ldquo;ms&rdquo;.</p></li>
+<li><p>Make the names of the columns of &ldquo;data&rdquo; syntactically valid for R using &ldquo;make.names&rdquo; function and clean unused object to free memory.</p></li>
+<li><p>Read the information included in the file &ldquo;/UCI HAR Dataset/activity_labels.txt&rdquo; and store it in an object called &ldquo;TestLabels&rdquo;. Rename the names of the columns to help in the following merging process.</p></li>
+<li><p>Merge &ldquo;data&rdquo; and &ldquo;TestLabels&rdquo; information by &ldquo;TestLabel&rdquo; column to add descriptive information for activities to &ldquo;data&rdquo;. The results include both &ldquo;TestLabel&rdquo; and &ldquo;TestName&rdquo;, even though both contains the same information, as it could be useful to the final user and consistency is assured by the process.</p></li>
+<li><p>After clening memory of unused objects, the initial dity data set is finished, so the next steps focus on obtaining the second tidy data set that includes the averages of each variable. </p></li>
+<li><p>Create the averages data set called &ldquo;data2&rdquo;, using aggregate function grouping by columns &ldquo;TestLabel&rdquo;, Subject&quot; and &ldquo;Source&rdquo;. As this process is applied to the whole &ldquo;data&rdquo; object, not separately column by column for the averages, it creates a duplicate of the &ldquo;TestLabel&rdquo;, Subject&quot; and &ldquo;Source&rdquo; columns (the function consider them the groups but applied the average to this columns also). To differenciate from the previous ones, these columns are named as their original but with and &ldquo;A&rdquo; of aggregate at the end: &ldquo;TestLabelA&rdquo;, SubjectA&quot; and &ldquo;SourceA&rdquo;. After this, remove the duplicate columns generated.</p></li>
+<li><p>Remove the duplicate columns generated by passing the whole &#39;data&#39; object to aggregate instead of each column each time</p></li>
+<li><p>Order de dataset by Test-Source-Subject (not completely neccesary but useful to human reading).</p></li>
+<li><p>Write the &ldquo;data&rdquo; object to &ldquo;completedata.txt&rdquo; file in current working directory.</p></li>
+<li><p>Write the &ldquo;data2&rdquo; object to &ldquo;tidydata.txt&rdquo; file in current working directory.</p></li>
+</ol>
+
+<h2>Variable descrition</h2>
+
+<p>This section contains an explanation of the columns used to identify the register, as well as a guide to understand the names of the other 86 columns.</p>
+
+<h3>Identification columns</h3>
+
+<p>These are the columns that identifies the information included in the register.</p>
+
+<table><thead>
+<tr>
+<th>Variable name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SubjectA</td>
+<td>Subject who performed the activity. Its range is from 1 to 30.</td>
+</tr>
+<tr>
+<td>TestNameA</td>
+<td>Activity name. Values: &ldquo;LAYING&rdquo;, &ldquo;SITTING&rdquo;, &ldquo;STANDING&rdquo;, &ldquo;WALKING&rdquo;, &ldquo;WALKING_DOWNSTAIRS&rdquo; and &ldquo;WALKING_UPSTAIRS&rdquo;.</td>
+</tr>
+<tr>
+<td>TestLabelA</td>
+<td>Code of the activity. Its range is from 1 to 6.</td>
+</tr>
+<tr>
+<td>SourceA</td>
+<td>Group of study. Values: &ldquo;test&rdquo; or &ldquo;train&rdquo;.</td>
+</tr>
+</tbody></table>
+
+<h3>Other columns</h3>
+
+<p>In the following lines, it is explained the components of the names of the variables, so the meaning of the name could be build upon the pieces of which it is formed.</p>
+
+<ul>
+<li><p>&ldquo;t&rdquo; and &ldquo;f&rdquo; stand for &ldquo;time&rdquo; and &ldquo;frequency&rdquo;.</p></li>
+<li><p>&ldquo;Acc&rdquo; and &ldquo;Gyro&rdquo; stand for accelerometer and gyroscope.</p></li>
+<li><p>&ldquo;Body&rdquo; and &ldquo;Gravity&rdquo; stand for the type of acceleration signal.</p></li>
+<li><p>&ldquo;mean&rdquo; and &ldquo;std&rdquo; stand for the mean and the standard deviation.</p></li>
+<li><p>&ldquo;Jerk&rdquo; stands for the jerk signal.</p></li>
+<li><p>&ldquo;angle&rdquo; stands for the angle between two vectors.</p></li>
+<li><p>&ldquo;-XYZ&rdquo;&ldquo; is used to denote 3-axial signals in the X, Y and Z directions.</p></li>
+</ul>
+
+</body>
+
+</html>
+
