@@ -59,7 +59,9 @@ rm(names)
 ## Extract only attributes related to mean and standar deviation
 ms <- features[grepl("mean", features$V2) | grepl("Mean", features$V2) | grepl("std", features$V2), ]
 data <- data[, c("TestLabel", "Subject", "Source", as.character(ms$V2)), with = FALSE]
+## Change the names of the attributes to make them R syntactically correct and friendly (no extra points in the name)
 names(data) <- make.names(names(data))
+names(data) <- gsub("\\.","",names(data))
 rm(features)
 rm(ms)
 

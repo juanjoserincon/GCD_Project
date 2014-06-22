@@ -175,7 +175,7 @@ hr {
 <li><p>Assign the names of the variables included in &ldquo;features&rdquo; to the attributes of the object &ldquo;data&rdquo;, using a temporary varaibles called &ldquo;names&rdquo;. In addition, rename the first three columns as &ldquo;TestLabel&rdquo;, Subject&quot; and &ldquo;Source&rdquo;.</p></li>
 <li><p>Store in the variable &ldquo;ms&rdquo; (for mean-std) the values of &ldquo;features&rdquo; that include &ldquo;mean&rdquo;, &ldquo;Mean&rdquo; or &ldquo;std&rdquo; in any position of the string. So, we have identified information related with means and standar deviations.</p></li>
 <li><p>Subset the columns of &ldquo;data&rdquo; removing the ones that do not appear in &ldquo;ms&rdquo;.</p></li>
-<li><p>Make the names of the columns of &ldquo;data&rdquo; syntactically valid for R using &ldquo;make.names&rdquo; function and clean unused object to free memory.</p></li>
+<li><p>Make the names of the columns of &ldquo;data&rdquo; syntactically valid for R using &ldquo;make.names&rdquo; function, remove extra &ldquo;.&rdquo; included in the name by the function and clean unused object to free memory.</p></li>
 <li><p>Read the information included in the file &ldquo;/UCI HAR Dataset/activity_labels.txt&rdquo; and store it in an object called &ldquo;TestLabels&rdquo;. Rename the names of the columns to help in the following merging process.</p></li>
 <li><p>Merge &ldquo;data&rdquo; and &ldquo;TestLabels&rdquo; information by &ldquo;TestLabel&rdquo; column to add descriptive information for activities to &ldquo;data&rdquo;. The results include both &ldquo;TestLabel&rdquo; and &ldquo;TestName&rdquo;, even though both contains the same information, as it could be useful to the final user and consistency is assured by the process.</p></li>
 <li><p>After clening memory of unused objects, the initial dity data set is finished, so the next steps focus on obtaining the second tidy data set that includes the averages of each variable. </p></li>
@@ -229,7 +229,7 @@ hr {
 <li><p>&ldquo;mean&rdquo; and &ldquo;std&rdquo; stand for the mean and the standard deviation.</p></li>
 <li><p>&ldquo;Jerk&rdquo; stands for the jerk signal.</p></li>
 <li><p>&ldquo;angle&rdquo; stands for the angle between two vectors.</p></li>
-<li><p>&ldquo;-XYZ&rdquo;&ldquo; is used to denote 3-axial signals in the X, Y and Z directions.</p></li>
+<li><p>&ldquo;X&rdquo;, &ldquo;Y&rdquo; and &ldquo;Z&rdquo; is used to denote 3-axial signals in the X, Y and Z directions.</p></li>
 </ul>
 
 </body>

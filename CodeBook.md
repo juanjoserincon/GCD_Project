@@ -40,7 +40,7 @@ The run_analysis.R script performs the following steps to clean the data:
 
 10. Subset the columns of "data" removing the ones that do not appear in "ms".
 
-11. Make the names of the columns of "data" syntactically valid for R using "make.names" function and clean unused object to free memory.
+11. Make the names of the columns of "data" syntactically valid for R using "make.names" function, remove extra "." included in the name by the function and clean unused object to free memory.
 
 12. Read the information included in the file "/UCI HAR Dataset/activity_labels.txt" and store it in an object called "TestLabels". Rename the names of the columns to help in the following merging process.
 
